@@ -1,0 +1,95 @@
+<!-- index.wxml
+<view class="container">
+  <view class="titleBar">
+    <div class="status">
+      <!-- wxml 模板{{数据状态}}数据绑定 
+        动态的 可编译的 
+      data 是活的 setDate
+      只要状态一变 界面立即改变-->
+      <!-- <text class="{{status=='1'?'active':''}}" data-status="1" bindtap="showStatus">全部</text> -->
+      <!-- data专有的数据属性 bindtap点击事件 -->
+      <!-- <text class="{{status=='2'?active':''}}" data-status="2" bindtap="showStatus">未完成</text>
+      <text class="{{status=='3'?active':''}}" data-status="3" bindtap="showStatus">已完成</text>
+    </div>
+    <div class="add">
+     <button class="min-btn" size="mini" type="warn" bingtap="addTodoShow"></button>  button小程序提供的组件 -->
+      <!-- 添加
+    </div>
+  </view>
+  <view class="addForm">
+    <view class="addForm-div">
+      <input type="text" placeholder="请输入任务" class="weui-input" />
+      <view class="addForm-btn">
+        <button type="warn" size="mini" class="weui-btn mini-btn">确定添加</button>
+        <button type="default" size="mini" class="weui-btn mini-btn">取消</button>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+<!--index.wxml-->
+<!-- <view class="container">
+    <view class="titleBar">
+      <div class="status"> -->
+        <!-- wxml 模板 {{数据状态}} 数据绑定
+        动态的，可编译 活 
+        data 是活 setData 
+        只要状态一变， 界面立即改变
+        -->
+        <!-- <text class="{{status=='1'?'active':''}}" data-status="1" bindtap="showStatus">全部</text>
+        <text class="{{status=='2'?'active':''}}" data-status="2" bindtap="showStatus">未完成</text>
+        <text class="{{status=='3'?'active':''}}"  data-status="3" bindtap="showStatus">已完成</text>
+      </div>
+      <div class="add">
+        <button class="mini-btn" size="mini" type="warn" bindtap="addTodoShow">添加</button>
+      </div>
+      </view>
+      <view class="addForm {{addShow?'hide':''}}">
+        <view class="addForm-div">
+          <input type="text" placeholder="请输入任务" class="weui-input" />
+          <view class="addForm-btn">
+            <button type="warn" size="mini" class="weui-btn mini-btn" bindtap="addTodo">确定添加</button>
+            <button type="default" size="mini" class="weui-btn mini-btn" bindtap="addTodoHide">取消</button>
+          </view>
+        </view>
+      </view>
+      </view> -->
+
+
+      <!--index.wxml-->
+<view class="container">
+  <view class="titleBar">
+    <div class="status">
+      <!-- wxml 模板 {{数据状态}} 数据绑定
+        动态的，可编译 活 
+        data 是活 setData 
+        只要状态一变， 界面立即改变
+        -->
+      <text class="{{status=='1'?'active':''}}" data-status="1" bindtap="showStatus">全部</text>
+      <text class="{{status=='2'?'active':''}}" data-status="2" bindtap="showStatus">未完成</text>
+      <text class="{{status=='3'?'active':''}}" data-status="3" bindtap="showStatus">已完成</text>
+    </div>
+    <div class="add">
+      <button class="mini-btn" size="mini" type="warn" bindtap="addTodoShow">+添加</button>
+    </div>
+  </view>
+  <scroll-view scroll-y class="lists">
+     <view class="item" wx:for="{{lists}}" wx:key="index" ><!--微信小程序列表循环 -->
+      <div class="content">
+        <icon class="icon-small" bindtap="changeTodo" data-item="{{index}}" size="23" type="{{item.status==0?'success':'circle'}}"></icon>
+        <text class="title">{{item.title}}</text>
+        <text class="time">{{item.date}}</text>
+      </div>
+    </view>
+  </scroll-view>
+
+  <view class="addForm {{addShow?'hide':''}}">
+    <view class="addForm-div">
+      <input type="text" placeholder="请输入任务" class="weui-input" value="{{addText}}" bindinput="setInput"/>
+      <view class="addForm-btn">
+        <button type="warn" size="mini" class="weui-btn mini-btn" bindtap="addTodo">确定添加</button>
+        <button type="default" size="mini" bindtap="addTodoHide" class="weui-btn mini-btn">取消</button>
+      </view>
+    </view>
+  </view>
+</view>
