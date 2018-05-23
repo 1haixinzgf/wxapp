@@ -1,0 +1,13 @@
+<view class="container">
+    <view class="input phone">
+        <image src="../../image/phone.png" alt="" class="phone-pic" bindtap="delete"/>
+        <input type="text" class="phone-input" placeholder="请输入手机号"  bindinput="onInput" value="{{entity.title}}"
+        />
+        
+        <image src="../../image/chacha.png" class="phone-chacha {{!entity.title?'hidden':''}}"  bindtap="delete"/>
+    </view>
+    <button class="input btn {{entity.title?'abl':'unable'}}" bindtap="validatemobile">下一步</button>
+    <view class="more">
+        点击"下一步",即同意<text class="link">《58到家用户协议》</text>
+    </view>
+</view>
