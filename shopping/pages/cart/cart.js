@@ -15,6 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options.id);
+    // options: {
+    //   id: 2
+    // }
   
   },
 
@@ -61,8 +65,7 @@ Page({
     this.setData({
       carts
     });
-    this.getTotalPrice()
-    
+    this.getTotalPrice();
   },
   minusCount(e) {
     const index = e.currentTarget.dataset.index;
@@ -80,11 +83,14 @@ Page({
     let selectAllStatus = this.data.selectAllStatus;
     selectAllStatus = !selectAllStatus;
     let carts =this.data.carts;
-    for(let i = 0;i<carts.length;i++){
-      if(carts[i].selected){ 
-      carts[i].selected = selectAllStatus;
-    }
-    }
+    
+    for( let i = 0 ;i < carts.length;i++){
+      if(!carts[i].selected){
+        selectAllStatus = false
+      }
+      carts[i].selected = !selectAllStatus
+   }
+   
     this.setData({  
       carts,
       selectAllStatus
@@ -100,20 +106,29 @@ Page({
     let carts = this.data.carts;
     let total =0;
     for(let i = 0;i<carts.length;i++){
-      total += carts[i].num * carts[i].price;
+      if(carts[i].selected){
+      total += carts[i].num * carts[i].price;}
     }
     this.setData({
       totalPrice:total.toFixed(2)
     })
   },
+
   selectList(e) {
     const index = e.currentTarget.dataset.index;
-    console.log(e)
+    // console.log(e);
     let carts =this.data.carts;
+    let selectAllStatus = this.data.selectAllStatus;
     const selected = carts[index].selected;
     carts[index].selected = !selected;
+    for(let i = 0;i<carts.length;i++){
+      if(!carts[i].selected){
+        selectAllStatus = !selectAllStatus
+      }
+    }
     this.setData({
-      carts
+      carts,
+      selectAllStatus
     })
   },
   /**
